@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración</h1>
+    <p>Visualización de testimonios anónimos</p>
+  </header>
+
+  <section>
+    <h2>Reportes Recibidos</h2>
+    <div id="contenedor-testimonios"></div>
+  </section>
+
+  <script>
+    async function cargarTestimonios() {
+      const contenedor = document.getElementById('contenedor-testimonios');
+      try {
+        const respuesta = await fetch('http://localhost:3000/testimonios');
+        const testimonios = await respuesta.json();
+        contenedor.innerHTML = '';
+        testimonios.forEach((item) => {
+          contenedor.innerHTML += `
+            <div class="card">
+              <h3>Reporte #${item.id}</h3>
+              <p>${item.testimonio}</p>
+              <small>${item.fecha}</small>
+            </div>
+          `;
+        });
+      } catch (error) {
+        contenedor.innerHTML = '<p>Error al cargar reportes</p>';
+      }
+    }
+
+    cargarTestimonios();
+  </script>
+</body>
+</html>
