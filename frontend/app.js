@@ -53,3 +53,48 @@ async function enviarTestimonio() {
 }
 
 window.enviarTestimonio = enviarTestimonio;
+// --- CÓDIGO PARA EL VIOLENTÓMETRO INTERACTIVO ---
+
+function mostrarAyuda(nivel) {
+  const resultado = document.getElementById('resultadoViolento');
+  if (!resultado) return;
+
+  // Limpiamos lo que haya tenido antes y aseguramos que se vea
+  resultado.innerHTML = "";
+  resultado.style.display = "block";
+
+  if (nivel === 'amarillo') {
+    resultado.innerHTML = `
+      <h3>🟡 Herramientas para Nivel Amarillo</h3>
+      <p>Aunque parezcan "bromas", estas conductas dañan la convivencia. Te recomendamos:</p>
+      <ul>
+        <li><strong>Establece límites:</strong> Expresa claramente que no te gustan esos comentarios o apodos.</li>
+        <li><strong>No ignores la señal:</strong> Habla con un amigo, familiar o un docente de confianza sobre cómo te sientes.</li>
+        <li><strong>Reporta en redes:</strong> Si las burlas son en plataformas digitales, usa las herramientas de reporte de la aplicación para bloquear la publicación.</li>
+      </ul>
+    `;
+  } else if (nivel === 'naranja') {
+    resultado.innerHTML = `
+      <h3>🟠 Herramientas para Nivel Naranja</h3>
+      <p>El ciberacoso constante requiere acciones firmes para proteger tu tranquilidad:</p>
+      <ul>
+        <li><strong>Guarda evidencias:</strong> Toma capturas de pantalla de los mensajes, perfiles falsos o publicaciones. No borres nada.</li>
+        <li><strong>Bloqueo inmediato:</strong> Corta toda comunicación bloqueando las cuentas del agresor en todas tus redes.</li>
+        <li><strong>Busca ayuda institucional:</strong> Reporta la situación con las autoridades de la escuela o tus padres para que intervengan.</li>
+      </ul>
+    `;
+  } else if (nivel === 'rojo') {
+    resultado.innerHTML = `
+      <h3>🔴 Herramientas para Nivel Rojo</h3>
+      <p>¡Atención! Estás ante una situación de riesgo alto que puede constituir un delito digital. Haz lo siguiente:</p>
+      <ul>
+        <li><strong>No cedas a la extorsión:</strong> Si te amenazan con publicar fotos o información, no accedas a sus peticiones ni envíes más material.</li>
+        <li><strong>Resguarda pruebas:</strong> Anota enlaces a los perfiles de los agresores y exporta los chats completos.</li>
+        <li><strong>Denuncia formalmente:</strong> Solicita apoyo de la Policía Cibernética (088 o al 911) o acude con un adulto a la Fiscalía para reportar el caso bajo leyes como la Ley Olimpia.</li>
+      </ul>
+    `;
+  }
+}
+
+// Hacemos que la función esté disponible para los botones del HTML
+window.mostrarAyuda = mostrarAyuda;
