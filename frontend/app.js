@@ -1,151 +1,55 @@
+console.log("APP JS CARGADO");
+
+const supabaseUrl = 'https://nnewexplofyzbcahdaab.supabase.co';
+
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw';
+
+const clienteSupabase = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+
 async function enviarTestimonio() {
 
-const textarea = document.getElementById('testimonio');
-const mensaje = document.getElementById('mensaje');
-const testimonio = textarea.value;
+  const textarea = document.getElementById('testimonio');
+  const mensaje = document.getElementById('mensaje');
 
-if (testimonio.trim() === '') {
-mensaje.innerHTML = "⚠️ Por favor escribe un testimonio.";
-return;
-}
+  const testimonio = textarea.value;
 
-try {
+  if (!testimonio.trim()) {
+    mensaje.innerText = 'Por favor escribe un testimonio.';
+    return;
+  }
 
-const respuesta = await fetch('http://localhost:3000/guardar-testimonio', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json'
-},
-body: JSON.stringify({ testimonio })
-});
+  const { error } = await clienteSupabase
+    .from('testimonios')
+    .insert([
+      {
+        testimonio: testimonio,
+        fecha: new Date().toISOString()
+      }
+    ]);
 
-const data = await respuesta.json();
+  if (error) {
+    console.error(error);
+    mensaje.innerText = 'Error al enviar el testimonio.';
+    return;
+  }
 
-const mensajesMotivacionales = [
+  const frases = [
+    'Gracias por compartir tu experiencia. Tu voz importa.',
+    'No estás solo. Buscar ayuda es un acto de valentía.',
+    'Hablar sobre lo que ocurre puede ser el primer paso para solucionarlo.',
+    'Tu bienestar es importante y mereces apoyo.',
+    'Gracias por confiar en este espacio seguro.'
+  ];
 
-"💙 Gracias por compartir tu experiencia. Tu voz puede ayudar a otras personas.",
+  const aleatoria =
+    frases[Math.floor(Math.random() * frases.length)];
 
-"🌟 Hablar es un acto de valentía. Hoy diste un paso importante.",
+  mensaje.innerText = aleatoria;
 
-"🤝 No estás solo. Existen personas dispuestas a ayudarte.",
-
-"💪 Tu experiencia tiene valor y merece ser escuchada.",
-
-"✨ Gracias por confiar en este espacio seguro."
-
-];
-
-const aleatorio = mensajesMotivacionales[
-Math.floor(Math.random() * mensajesMotivacionales.length)
-];
-
-mensaje.innerHTML = `
-
-<div style="background:#d4edda;padding:15px;border-radius:10px;margin-top:10px;">
-<h3>✅ Testimonio enviado correctamente</h3>
-<p>${aleatorio}</p>
-</div>
-`;
-
-textarea.value = '';
-
-} catch (error) {
-
-mensaje.innerHTML = `
-
-<div style="background:#f8d7da;padding:15px;border-radius:10px;margin-top:10px;">
-❌ Error al enviar el testimonio.
-</div>
-`;
-
-}
-
-}
-
-function mostrarAyuda(nivel){
-
-const resultado = document.getElementById("resultadoViolento");
-
-if(nivel === "amarillo"){
-
-resultado.innerHTML = `
-
-<h3>🟡 Nivel Amarillo</h3>
-
-<p><strong>Situaciones:</strong></p>
-
-<ul>
-<li>Burlas constantes.</li>
-<li>Apodos ofensivos.</li>
-<li>Comentarios hirientes.</li>
-<li>Memes para ridiculizar.</li>
-</ul>
-
-<p><strong>Herramientas recomendadas:</strong></p>
-
-<ul>
-<li>Aprender sobre alfabetización emocional.</li>
-<li>Fortalecer la autoestima.</li>
-<li>Hablar con una persona de confianza.</li>
-<li>Identificar conductas dañinas.</li>
-</ul>
-`;
-}
-
-if(nivel === "naranja"){
-
-resultado.innerHTML = `
-
-<h3>🟠 Nivel Naranja</h3>
-
-<p><strong>Situaciones:</strong></p>
-
-<ul>
-<li>Difusión de rumores.</li>
-<li>Perfiles falsos.</li>
-<li>Exclusión digital.</li>
-<li>Mensajes ofensivos frecuentes.</li>
-</ul>
-
-<p><strong>Herramientas recomendadas:</strong></p>
-
-<ul>
-<li>Guardar capturas de pantalla.</li>
-<li>Bloquear usuarios agresores.</li>
-<li>Reportar contenido.</li>
-<li>Solicitar apoyo escolar.</li>
-</ul>
-`;
-}
-
-if(nivel === "rojo"){
-
-resultado.innerHTML = `
-
-<h3>🔴 Nivel Rojo</h3>
-
-<p><strong>Situaciones:</strong></p>
-
-<ul>
-<li>Sextorsión.</li>
-<li>Amenazas.</li>
-<li>Doxing.</li>
-<li>Difusión de contenido íntimo.</li>
-</ul>
-
-<p><strong>Herramientas recomendadas:</strong></p>
-
-<ul>
-<li>Guardar toda la evidencia.</li>
-<li>No responder al agresor.</li>
-<li>Solicitar ayuda inmediata.</li>
-<li>Realizar denuncia formal.</li>
-</ul>
-`;
-}
-
+  textarea.value = '';
 }
 
 window.enviarTestimonio = enviarTestimonio;
-window.mostrarAyuda = mostrarAyuda;
-
