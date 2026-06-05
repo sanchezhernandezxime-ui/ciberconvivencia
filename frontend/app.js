@@ -191,3 +191,40 @@ mostrarAyuda;
 console.log(
   "APP COMPLETO CARGADO"
 );
+window.mostrarAyudaNivel = function (nivel) {
+    const resultado = document.getElementById("resultadoViolento");
+    if (!resultado) return;
+
+    if (nivel === "amarillo") {
+        resultado.innerHTML = `
+            <h3>🟡 Nivel Amarillo - Herramientas</h3>
+            <ul>
+                <li>Ignora insultos.</li>
+                <li>Bloquea usuarios.</li>
+                <li>No respondas provocaciones.</li>
+            </ul>
+        `;
+    }
+
+    if (nivel === "naranja") {
+        resultado.innerHTML = `
+            <h3>🟠 Nivel Naranja - Herramientas</h3>
+            <ul>
+                <li>Reporta cuentas falsas.</li>
+                <li>Guarda evidencia.</li>
+                <li>Habla con un adulto.</li>
+            </ul>
+        `;
+    }
+
+    if (nivel === "rojo") {
+        resultado.innerHTML = `
+            <h3>🔴 Nivel Rojo - Herramientas</h3>
+            <ul>
+                <li>Denuncia inmediato.</li>
+                <li>No respondas amenazas.</li>
+                <li>Contacta autoridades (911).</li>
+            </ul>
+        `;
+    }
+};

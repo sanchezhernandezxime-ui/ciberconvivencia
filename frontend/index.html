@@ -211,16 +211,15 @@
             </div>
         </div>
 
-        <script>
-            (function() {
-                // Ruta directa corregida sin puntos ni diagonales estorbosas
+       <script>
+(function() {
+
 const ARCHIVO_AUDIO = "./podcast5.mp3";
 
 const btnPlay = document.getElementById('podBtnPlay');
 const btnAvatar = document.getElementById('podAvatar');
 
-let audio = new Audio();
-audio.src = ARCHIVO_AUDIO;
+let audio = new Audio(ARCHIVO_AUDIO);
 audio.preload = "auto";
 
 let isPlaying = false;
@@ -243,7 +242,7 @@ btnPlay.addEventListener('click', async () => {
 
     } catch (error) {
         console.error("Error al reproducir audio:", error);
-        alert("No se pudo reproducir el audio. Revisa el archivo o recarga la página.");
+        alert("No se pudo reproducir el audio.");
     }
 });
 
@@ -257,19 +256,8 @@ function resetPlayerState() {
     btnAvatar.textContent = "🎙️";
 }
 
-                audio.addEventListener('ended', () => {
-                    resetPlayerState();
-                });
-
-                function resetPlayerState() {
-                    isPlaying = false;
-                    btnPlay.textContent = "▶ Reproducir Audio";
-                    btnPlay.classList.remove('stop');
-                    btnAvatar.classList.remove('animating');
-                    btnAvatar.textContent = "🎙️";
-                }
-            })();
-        </script>
+})();
+</script>
     </div>
 
     <div class="instagram-card">
