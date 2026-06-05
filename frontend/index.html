@@ -1,348 +1,299 @@
-<!DOCTYPE html>
-
+<<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Equipo 07 | Plataforma de Ciberconvivencia</title>
-
-<link rel="stylesheet" href="styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo 07 | Plataforma de Ciberconvivencia</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-
-<h1>🛡️ Equipo 07</h1>
-
-<h2>Plataforma de Prevención del Ciberacoso</h2>
-
-<p>
-Promoviendo espacios digitales seguros,
-responsables y libres de violencia.
-</p>
-
+    <h1>🛡️ Equipo 07</h1>
+    <h2>Plataforma de Prevención del Ciberacoso</h2>
+    <p>Promoviendo espacios digitales seguros, responsables y libres de violencia.</p>
 </header>
 
 <nav>
-
-<a href="#impacto">Impacto</a>
-
-<a href="#violentometro">Violentómetro</a>
-
-<a href="#buzon">Buzón</a>
-
-<a href="#informacion">Información</a>
-
-<a href="#podcast">Podcast</a>
-
-<a href="#ayuda">Ayuda</a>
-
+    <a href="#impacto">Impacto</a>
+    <a href="#violentometro">Violentómetro</a>
+    <a href="#buzon">Buzón</a>
+    <a href="#informacion">Información</a>
+    <a href="#podcast">Podcast</a>
+    <a href="#ayuda">Ayuda</a>
 </nav>
 
 <section id="impacto">
+    <h2>📊 Impacto del Ciberacoso</h2>
+    <p>De acuerdo con la investigación realizada por el Equipo 07, el 49.3% de los jóvenes encuestados ha sufrido alguna forma de ciberacoso.</p>
 
-<h2>📊 Impacto del Ciberacoso</h2>
+    <div class="estadistica-container">
+        <div class="porcentaje-card">
+            <h3>49.3%</h3>
+            <p>Ha sufrido ciberacoso</p>
+        </div>
 
-<p>
-De acuerdo con la investigación realizada por el Equipo 07,
-el 49.3% de los jóvenes encuestados ha sufrido
-alguna forma de ciberacoso.
-</p>
-
-<div class="estadistica-container">
-
-<div class="porcentaje-card">
-<h3>49.3%</h3>
-<p>Ha sufrido ciberacoso</p>
-</div>
-
-<div class="personas-grid">
-
-<div class="persona afectada">👤</div>
-<div class="persona afectada">👤</div>
-<div class="persona afectada">👤</div>
-<div class="persona afectada">👤</div>
-<div class="persona afectada">👤</div>
-
-<div class="persona">👤</div>
-<div class="persona">👤</div>
-<div class="persona">👤</div>
-<div class="persona">👤</div>
-
-<div class="persona denuncia">🚨</div>
-
-</div>
-
-</div>
-
+        <div class="personas-grid">
+            <div class="persona afectada">👤</div>
+            <div class="persona afectada">👤</div>
+            <div class="persona afectada">👤</div>
+            <div class="persona afectada">👤</div>
+            <div class="persona afectada">👤</div>
+            <div class="persona">👤</div>
+            <div class="persona">👤</div>
+            <div class="persona">👤</div>
+            <div class="persona">👤</div>
+            <div class="persona denuncia">🚨</div>
+        </div>
+    </div>
 </section>
 
 <section id="violentometro">
+    <h2>🛡️ Violentómetro Interactivo</h2>
+    <p>Selecciona las situaciones que has vivido.</p>
 
-<h2>🛡️ Violentómetro Interactivo</h2>
+    <div class="checklist">
+        <label><input type="checkbox" class="riesgo" value="1"> Insultos en redes</label>
+        <label><input type="checkbox" class="riesgo" value="1"> Exclusión digital</label>
+        <label><input type="checkbox" class="riesgo" value="2"> Difusión de rumores</label>
+        <label><input type="checkbox" class="riesgo" value="2"> Compartir capturas privadas</label>
+        <label><input type="checkbox" class="riesgo" value="3"> Difusión de fotos sin permiso</label>
+        <label><input type="checkbox" class="riesgo" value="3"> Amenazas</label>
+        <label><input type="checkbox" class="riesgo" value="3"> Suplantación de identidad</label>
+    </div>
 
-<p>
-Selecciona las situaciones que has vivido.
-</p>
+    <button onclick="evaluarViolentometro()">Evaluar situación</button>
+    <div id="resultadoViolentometro" class="resultado-violentometro"></div>
 
-<div class="checklist">
+    <h2 style="margin-top:60px;">🚦 Violentómetro Completo</h2>
 
-<label><input type="checkbox" class="riesgo" value="1"> Insultos en redes</label>
+    <div class="nivel amarillo">
+        <h3>🟡 Nivel Amarillo</h3>
+        <ul>
+            <li>Apodos ofensivos.</li>
+            <li>Burlas constantes.</li>
+            <li>Memes para ridiculizar.</li>
+            <li>Comentarios hirientes.</li>
+        </ul>
+        <button onclick="mostrarAyudaNivel('amarillo')">Ver herramientas</button>
+    </div>
 
-<label><input type="checkbox" class="riesgo" value="1"> Exclusión digital</label>
+    <div class="nivel naranja">
+        <h3>🟠 Nivel Naranja</h3>
+        <ul>
+            <li>Rumores digitales.</li>
+            <li>Perfiles falsos.</li>
+            <li>Difusión de conversaciones.</li>
+            <li>Hostigamiento constante.</li>
+        </ul>
+        <button onclick="mostrarAyudaNivel('naranja')">Ver herramientas</button>
+    </div>
 
-<label><input type="checkbox" class="riesgo" value="2"> Difusión de rumores</label>
+    <div class="nivel rojo">
+        <h3>🔴 Nivel Rojo</h3>
+        <ul>
+            <li>Amenazas.</li>
+            <li>Sextorsión.</li>
+            <li>Doxing.</li>
+            <li>Difusión de contenido íntimo.</li>
+        </ul>
+        <button onclick="mostrarAyudaNivel('rojo')">Ver herramientas</button>
+    </div>
 
-<label><input type="checkbox" class="riesgo" value="2"> Compartir capturas privadas</label>
-
-<label><input type="checkbox" class="riesgo" value="3"> Difusión de fotos sin permiso</label>
-
-<label><input type="checkbox" class="riesgo" value="3"> Amenazas</label>
-
-<label><input type="checkbox" class="riesgo" value="3"> Suplantación de identidad</label>
-
-</div>
-
-<button onclick="evaluarViolentometro()">
-Evaluar situación
-</button>
-
-<div id="resultadoViolentometro"
-class="resultado-violentometro">
-</div>
-
-<h2 style="margin-top:60px;">
-🚦 Violentómetro Completo
-</h2>
-
-<div class="nivel amarillo">
-
-<h3>🟡 Nivel Amarillo</h3>
-
-<ul>
-<li>Apodos ofensivos.</li>
-<li>Burlas constantes.</li>
-<li>Memes para ridiculizar.</li>
-<li>Comentarios hirientes.</li>
-</ul>
-
-<button onclick="mostrarAyudaNivel('amarillo')">
-Ver herramientas
-</button>
-
-</div>
-
-<div class="nivel naranja">
-
-<h3>🟠 Nivel Naranja</h3>
-
-<ul>
-<li>Rumores digitales.</li>
-<li>Perfiles falsos.</li>
-<li>Difusión de conversaciones.</li>
-<li>Hostigamiento constante.</li>
-</ul>
-
-<button onclick="mostrarAyudaNivel('naranja')">
-Ver herramientas
-</button>
-
-</div>
-
-<div class="nivel rojo">
-
-<h3>🔴 Nivel Rojo</h3>
-
-<ul>
-<li>Amenazas.</li>
-<li>Sextorsión.</li>
-<li>Doxing.</li>
-<li>Difusión de contenido íntimo.</li>
-</ul>
-
-<button onclick="mostrarAyudaNivel('rojo')">
-Ver herramientas
-</button>
-
-</div>
-
-<div id="resultadoViolento" class="card"></div>
-
+    <div id="resultadoViolento" class="card"></div>
 </section>
 
 <section id="buzon">
-
-<h2>💙 Buzón Anónimo</h2>
-
-<p>
-Hoy eres testigo, mañana puedes ser víctima.
-</p>
-
-<textarea
-id="testimonio"
-placeholder="Comparte tu experiencia aquí..."
-></textarea>
-
-<button onclick="enviarTestimonio()">
-Enviar de forma anónima
-</button>
-
-<div id="mensaje"></div>
-
+    <h2>💙 Buzón Anónimo</h2>
+    <p>Hoy eres testigo, mañana puedes ser víctima.</p>
+    <textarea id="testimonio" placeholder="Comparte tu experiencia aquí..."></textarea>
+    <button onclick="enviarTestimonio()">Enviar de forma anónima</button>
+    <div id="mensaje"></div>
 </section>
 
 <section id="informacion">
+    <h2>📚 Centro de Información</h2>
+    <div class="card">
+        <h3>¿Qué es el ciberacoso?</h3>
+        <p>Es una forma de violencia digital que utiliza redes sociales, mensajería y otras plataformas para dañar a una persona.</p>
+        
+        <h3>Tipos de ciberacoso</h3>
+        <ul>
+            <li>Hostigamiento.</li>
+            <li>Exclusión.</li>
+            <li>Suplantación de identidad.</li>
+            <li>Doxing.</li>
+            <li>Sextorsión.</li>
+        </ul>
 
-<h2>📚 Centro de Información</h2>
+        <h3>Consecuencias</h3>
+        <ul>
+            <li>Ansiedad.</li>
+            <li>Estrés.</li>
+            <li>Baja autoestima.</li>
+            <li>Aislamiento social.</li>
+            <li>Bajo rendimiento escolar.</li>
+        </ul>
 
-<div class="card">
-
-<h3>¿Qué es el ciberacoso?</h3>
-
-<p>
-Es una forma de violencia digital que utiliza redes sociales,
-mensajería y otras plataformas para dañar a una persona.
-</p>
-
-<h3>Tipos de ciberacoso</h3>
-
-<ul>
-<li>Hostigamiento.</li>
-<li>Exclusión.</li>
-<li>Suplantación de identidad.</li>
-<li>Doxing.</li>
-<li>Sextorsión.</li>
-</ul>
-
-<h3>Consecuencias</h3>
-
-<ul>
-<li>Ansiedad.</li>
-<li>Estrés.</li>
-<li>Baja autoestima.</li>
-<li>Aislamiento social.</li>
-<li>Bajo rendimiento escolar.</li>
-</ul>
-
-<h3>Prevención</h3>
-
-<ul>
-<li>No compartir información privada.</li>
-<li>Configurar la privacidad.</li>
-<li>Bloquear agresores.</li>
-<li>Reportar contenido ofensivo.</li>
-</ul>
-
-</div>
-
+        <h3>Prevención</h3>
+        <ul>
+            <li>No compartir información privada.</li>
+            <li>Configurar la privacidad.</li>
+            <li>Bloquear agresores.</li>
+            <li>Reportar contenido ofensivo.</li>
+        </ul>
+    </div>
 </section>
 
 <section>
-
-<h2>💬 Muro de Resiliencia</h2>
-
-<div class="resiliencia-grid">
-
-<div class="testimonio-card">
-Tu voz importa.
-</div>
-
-<div class="testimonio-card">
-Denunciar ayuda a proteger a otros.
-</div>
-
-<div class="testimonio-card">
-La empatía digital salva vidas.
-</div>
-
-</div>
-
+    <h2>💬 Muro de Resiliencia</h2>
+    <div class="resiliencia-grid">
+        <div class="testimonio-card">Tu voz importa.</div>
+        <div class="testimonio-card">Denunciar ayuda a proteger a otros.</div>
+        <div class="testimonio-card">La empatía digital salva vidas.</div>
+    </div>
 </section>
 
 <section id="podcast">
+    <h2>🎙️ Podcast Educativo</h2>
 
-<h2>🎙️ Podcast Educativo</h2>
+    <div id="podcast-modulo-root" style="width: 100%; max-width: 500px; margin: 20px auto; padding: 10px; font-family: sans-serif;">
+        <style>
+            #podcast-modulo-root .player-card {
+                background: #110d26;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                padding: 30px;
+                text-align: center;
+                color: #ffffff;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+            #podcast-modulo-root .avatar-audio {
+                width: 110px; height: 110px;
+                background: linear-gradient(135deg, #6366f1, #f43f5e);
+                border-radius: 50%;
+                margin: 0 auto 20px;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 45px;
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+                transition: transform 0.3s;
+            }
+            #podcast-modulo-root .avatar-audio.animating {
+                animation: pulseWave 1.5s infinite ease-in-out;
+            }
+            #podcast-modulo-root .audio-title { font-size: 22px; margin: 0 0 5px 0; font-weight: 600; }
+            #podcast-modulo-root .audio-sub { color: #94a3b8; font-size: 14px; margin-bottom: 25px; }
+            #podcast-modulo-root .controls-row { display: flex; justify-content: center; margin-bottom: 10px; }
+            #podcast-modulo-root .btn-audio {
+                background: linear-gradient(135deg, #6366f1 0%, #f43f5e 100%);
+                border: none; color: white;
+                padding: 14px 32px; border-radius: 30px; font-weight: bold;
+                cursor: pointer; transition: all 0.2s; font-size: 16px;
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            }
+            #podcast-modulo-root .btn-audio:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4); }
+            #podcast-modulo-root .btn-audio.stop { background: #e11d48; }
+            
+            @keyframes pulseWave {
+                0% { transform: scale(1); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+                50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(244, 63, 94, 0.5); }
+                100% { transform: scale(1); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            }
+        </style>
 
-<div class="podcast-card">
+        <div class="player-card">
+            <div class="avatar-audio" id="podAvatar">🎙️</div>
+            <h3 class="audio-title">Presentación del Equipo</h3>
+            <p class="audio-sub">Ciberconvivencia Podcast</p>
+            
+            <div class="controls-row">
+                <button class="btn-audio" id="podBtnPlay">▶ Reproducir Audio</button>
+            </div>
+        </div>
 
-<p>
-Escucha nuestro contenido educativo sobre
-ciberconvivencia y prevención del ciberacoso.
-</p>
+        <script>
+            (function() {
+                // Ruta directa corregida sin puntos ni diagonales estorbosas
+             const ARCHIVO_AUDIO = "./frontend/podcast5.mp3";
 
-<audio controls>
-<source src="podcast.mp3" type="audio/mpeg">
-</audio>
+const btnPlay = document.getElementById('podBtnPlay');
+const btnAvatar = document.getElementById('podAvatar');
 
-</div>
+let audio = new Audio(ARCHIVO_AUDIO);
+let isPlaying = false;
 
-<div class="instagram-card">
+btnPlay.addEventListener('click', () => {
+    if (isPlaying) {
+        audio.pause();
+        resetPlayerState();
+    } else {
+        audio.play().then(() => {
+            isPlaying = true;
+            btnPlay.textContent = "⏸ Pausar Audio";
+            btnPlay.classList.add('stop');
+            btnAvatar.classList.add('animating');
+            btnAvatar.textContent = "💿";
+        }).catch(error => {
+            console.error("Error al reproducir audio:", error);
+            alert("Asegúrate de que el archivo se llama exactamente 'podcast5.mp3' y está en la carpeta correcta.");
+        });
+    }
+});
 
-<h3>📱 Instagram</h3>
+                audio.addEventListener('ended', () => {
+                    resetPlayerState();
+                });
 
-<p>@teampec_</p>
+                function resetPlayerState() {
+                    isPlaying = false;
+                    btnPlay.textContent = "▶ Reproducir Audio";
+                    btnPlay.classList.remove('stop');
+                    btnAvatar.classList.remove('animating');
+                    btnAvatar.textContent = "🎙️";
+                }
+            })();
+        </script>
+    </div>
 
-</div>
-
+    <div class="instagram-card">
+        <h3>📱 Instagram</h3>
+        <p>@teampec_</p>
+    </div>
 </section>
 
 <section id="ayuda">
+    <h2>🚨 Necesito ayuda ahora</h2>
+    <button class="btn-ayuda" onclick="mostrarAyuda()">Mostrar guía rápida</button>
 
-<h2>🚨 Necesito ayuda ahora</h2>
+    <div id="guiaAyuda" class="guia-ayuda">
+        <ol>
+            <li>Guarda evidencias.</li>
+            <li>No respondas.</li>
+            <li>Bloquea al agresor.</li>
+            <li>Reporta el contenido.</li>
+            <li>Busca ayuda de un adulto.</li>
+            <li>Contacta autoridades.</li>
+        </ol>
+    </div>
 
-<button class="btn-ayuda"
-onclick="mostrarAyuda()">
-Mostrar guía rápida </button>
-
-<div id="guiaAyuda" class="guia-ayuda">
-
-<ol>
-<li>Guarda evidencias.</li>
-<li>No respondas.</li>
-<li>Bloquea al agresor.</li>
-<li>Reporta el contenido.</li>
-<li>Busca ayuda de un adulto.</li>
-<li>Contacta autoridades.</li>
-</ol>
-
-</div>
-
-<div class="card">
-
-<h3>☎ Líneas de ayuda</h3>
-
-<p><strong>911</strong> Emergencias</p>
-
-<p><strong>088</strong> Policía Cibernética</p>
-
-<p><strong>800 911 2000</strong> Línea de la Vida</p>
-
-</div>
-
+    <div class="card">
+        <h3>☎ Líneas de ayuda</h3>
+        <p><strong>911</strong> Emergencias</p>
+        <p><strong>088</strong> Policía Cibernética</p>
+        <p><strong>800 911 2000</strong> Línea de la Vida</p>
+    </div>
 </section>
 
 <section class="frase-final">
-
-<h2>
-Si normalizamos la violencia digital ahora,
-¿en qué nos convertiremos mañana?
-</h2>
-
+    <h2>Si normalizamos la violencia digital ahora, ¿en qué nos convertiremos mañana?</h2>
 </section>
 
 <footer>
-
-<p>
-Proyecto desarrollado por el Equipo 07.
-</p>
-
+    <p>Proyecto desarrollado por el Equipo 07.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
 <script src="app.js"></script>
 
 </body>
 </html>
-
