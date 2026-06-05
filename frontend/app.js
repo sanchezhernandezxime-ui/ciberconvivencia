@@ -1,100 +1,193 @@
 console.log("APP JS CARGADO");
 
-const supabaseUrl = 'https://nnewexplofyzbcahdaab.supabase.co';
+// =========================
+// SUPABASE
+// =========================
 
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw';
+const supabaseUrl =
+'https://nnewexplofyzbcahdaab.supabase.co';
 
-const clienteSupabase = window.supabase.createClient(
+const supabaseKey =
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw';
+
+const clienteSupabase =
+window.supabase.createClient(
   supabaseUrl,
   supabaseKey
 );
 
+// =========================
+// BUZÓN ANÓNIMO
+// =========================
+
 async function enviarTestimonio() {
 
-  const textarea = document.getElementById('testimonio');
-  const mensaje = document.getElementById('mensaje');
+  const textarea =
+    document.getElementById('testimonio');
 
-  const testimonio = textarea.value;
+  const mensaje =
+    document.getElementById('mensaje');
 
-  if (!testimonio.trim()) {
-    mensaje.innerText = 'Por favor escribe un testimonio.';
+  const testimonio =
+    textarea.value.trim();
+
+  if (!testimonio) {
+
+    mensaje.innerText =
+      'Por favor escribe un testimonio.';
+
     return;
   }
 
-  const { error } = await clienteSupabase
-    .from('testimonios')
-    .insert([
-      {
-        testimonio: testimonio,
-        fecha: new Date().toISOString()
-      }
-    ]);
+  const { error } =
+    await clienteSupabase
+      .from('testimonios')
+      .insert([
+        {
+          testimonio: testimonio,
+          fecha: new Date().toISOString()
+        }
+      ]);
 
   if (error) {
+
     console.error(error);
-    mensaje.innerText = 'Error al enviar el testimonio.';
+
+    mensaje.innerText =
+      'Error al enviar el testimonio.';
+
     return;
   }
 
   const frases = [
+
     'Gracias por compartir tu experiencia. Tu voz importa.',
+
     'No estás solo. Buscar ayuda es un acto de valentía.',
+
     'Hablar sobre lo que ocurre puede ser el primer paso para solucionarlo.',
+
     'Tu bienestar es importante y mereces apoyo.',
+
     'Gracias por confiar en este espacio seguro.'
   ];
 
-  const aleatoria =
-    frases[Math.floor(Math.random() * frases.length)];
-
-  mensaje.innerText = aleatoria;
+  mensaje.innerText =
+    frases[
+      Math.floor(
+        Math.random() * frases.length
+      )
+    ];
 
   textarea.value = '';
 }
 
-window.enviarTestimonio = enviarTestimonio;
-// --- CÓDIGO PARA EL VIOLENTÓMETRO INTERACTIVO ---
+window.enviarTestimonio =
+enviarTestimonio;
 
-function mostrarAyuda(nivel) {
-  const resultado = document.getElementById('resultadoViolento');
+// =========================
+// VIOLENTÓMETRO
+// =========================
+
+function evaluarViolentometro() {
+
+  const checks =
+    document.querySelectorAll(
+      '.riesgo:checked'
+    );
+
+  const resultado =
+    document.getElementById(
+      'resultadoViolentometro'
+    );
+
   if (!resultado) return;
 
-  // Limpiamos lo que haya tenido antes y aseguramos que se vea
-  resultado.innerHTML = "";
-  resultado.style.display = "block";
+  let puntos = 0;
 
-  if (nivel === 'amarillo') {
+  checks.forEach(check => {
+
+    puntos +=
+      Number(check.value);
+
+  });
+
+  if (puntos === 0) {
+
+    resultado.className =
+      'resultado-violentometro verde';
+
     resultado.innerHTML = `
-      <h3>🟡 Herramientas para Nivel Amarillo</h3>
-      <p>Aunque parezcan "bromas", estas conductas dañan la convivencia. Te recomendamos:</p>
-      <ul>
-        <li><strong>Establece límites:</strong> Expresa claramente que no te gustan esos comentarios o apodos.</li>
-        <li><strong>No ignores la señal:</strong> Habla con un amigo, familiar o un docente de confianza sobre cómo te sientes.</li>
-        <li><strong>Reporta en redes:</strong> Si las burlas son en plataformas digitales, usa las herramientas de reporte de la aplicación para bloquear la publicación.</li>
-      </ul>
+      <h3>🟢 Riesgo Bajo</h3>
+      <p>
+      No se detectan señales importantes
+      de ciberacoso.
+      </p>
     `;
-  } else if (nivel === 'naranja') {
+
+  } else if (puntos <= 4) {
+
+    resultado.className =
+      'resultado-violentometro alerta';
+
     resultado.innerHTML = `
-      <h3>🟠 Herramientas para Nivel Naranja</h3>
-      <p>El ciberacoso constante requiere acciones firmes para proteger tu tranquilidad:</p>
-      <ul>
-        <li><strong>Guarda evidencias:</strong> Toma capturas de pantalla de los mensajes, perfiles falsos o publicaciones. No borres nada.</li>
-        <li><strong>Bloqueo inmediato:</strong> Corta toda comunicación bloqueando las cuentas del agresor en todas tus redes.</li>
-        <li><strong>Busca ayuda institucional:</strong> Reporta la situación con las autoridades de la escuela o tus padres para que intervengan.</li>
-      </ul>
+      <h3>🟡 Riesgo Medio</h3>
+      <p>
+      Existen señales de alerta.
+      Habla con una persona de confianza.
+      </p>
     `;
-  } else if (nivel === 'rojo') {
+
+  } else {
+
+    resultado.className =
+      'resultado-violentometro peligro';
+
     resultado.innerHTML = `
-      <h3>🔴 Herramientas para Nivel Rojo</h3>
-      <p>¡Atención! Estás ante una situación de riesgo alto que puede constituir un delito digital. Haz lo siguiente:</p>
-      <ul>
-        <li><strong>No cedas a la extorsión:</strong> Si te amenazan con publicar fotos o información, no accedas a sus peticiones ni envíes más material.</li>
-        <li><strong>Resguarda pruebas:</strong> Anota enlaces a los perfiles de los agresores y exporta los chats completos.</li>
-        <li><strong>Denuncia formalmente:</strong> Solicita apoyo de la Policía Cibernética (088 o al 911) o acude con un adulto a la Fiscalía para reportar el caso bajo leyes como la Ley Olimpia.</li>
-      </ul>
+      <h3>🔴 Riesgo Alto</h3>
+      <p>
+      Guarda evidencias,
+      bloquea al agresor
+      y busca ayuda inmediatamente.
+      </p>
     `;
   }
 }
 
-// Hacemos que la función esté disponible para los botones del HTML
-window.mostrarAyuda = mostrarAyuda;
+window.evaluarViolentometro =
+evaluarViolentometro;
+
+// =========================
+// BOTÓN NECESITO AYUDA
+// =========================
+
+function mostrarAyuda() {
+
+  const guia =
+    document.getElementById(
+      'guiaAyuda'
+    );
+
+  if (!guia) return;
+
+  if (
+    guia.style.display ===
+    'block'
+  ) {
+
+    guia.style.display =
+      'none';
+
+  } else {
+
+    guia.style.display =
+      'block';
+  }
+}
+
+window.mostrarAyuda =
+mostrarAyuda;
+
+console.log(
+  "APP COMPLETO CARGADO"
+);
