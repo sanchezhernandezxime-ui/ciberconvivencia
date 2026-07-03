@@ -1,27 +1,49 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// 🔐 CONEXIÓN SUPABASE (REEMPLAZA ESTO)
+// 🔐 SUPABASE (REEMPLAZA ESTO)
 const supabaseUrl = "https://TU_PROYECTO.supabase.co";
 const supabaseKey = "TU_ANON_KEY";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// ==========================
-// NAVEGACIÓN
-// ==========================
+// =========================
+// 🧭 NAVEGACIÓN SEGURA
+// =========================
 function mostrar(id) {
-  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
+  document.querySelectorAll("section").forEach(sec => {
+    sec.style.display = "none";
+  });
+
+  const target = document.getElementById(id);
+  if (target) {
+    target.style.display = "block";
+  }
 }
 
-window.mostrar = mostrar;
+// =========================
+// 🟢 INICIO DE PÁGINA
+// =========================
+window.onload = () => {
+  document.querySelectorAll("section").forEach(sec => {
+    sec.style.display = "none";
+  });
 
-// ==========================
-// BUZÓN IA + SUPABASE
-// ==========================
+  const v = document.getElementById("violentometro");
+  if (v) v.style.display = "block";
+};
+
+// =========================
+// 🤖 BUZÓN IA + SUPABASE
+// =========================
 async function enviar() {
-  let msg = document.getElementById("mensaje").value.toLowerCase();
+  const input = document.getElementById("mensaje");
+  const out = document.getElementById("respuesta");
 
-  if (!msg) return;
+  if (!input || !input.value.trim()) {
+    out.innerText = "Escribe un mensaje primero";
+    return;
+  }
+
+  let msg = input.value.toLowerCase();
 
   let nivel = "";
   let respuesta = "";
@@ -31,20 +53,20 @@ async function enviar() {
     msg.includes("amenaza") ||
     msg.includes("extorsión") ||
     msg.includes("matar") ||
-    msg.includes("foto") ||
-    msg.includes("video privado")
+    msg.includes("foto privada") ||
+    msg.includes("video")
   ) {
     nivel = "Grave";
     respuesta = `
 🚨 CASO GRAVE DETECTADO
 
 ✔ Guarda evidencia
-✔ No respondas al agresor
-✔ Bloquea inmediatamente
-✔ Reporta en la plataforma
-✔ Llama al 911 si hay peligro
+✔ No respondas
+✔ Bloquea al agresor
+✔ Reporta en la red social
+✔ Llama al 911 si hay riesgo
 
-📌 Recomendación: busca apoyo adulto o psicológico inmediato.
+💡 Esto puede ser un delito digital.
     `;
   }
 
@@ -60,12 +82,10 @@ async function enviar() {
 ⚠️ CASO DE ACOSO DIGITAL
 
 ✔ No respondas
-✔ Bloquea usuarios
-✔ Reporta contenido
+✔ Bloquea cuentas
 ✔ Guarda evidencia
 ✔ Habla con un adulto
-
-📌 Recomendación: si continúa, puede escalar a grave.
+✔ Reporta la cuenta
     `;
   }
 
@@ -76,17 +96,17 @@ async function enviar() {
 🟢 CASO LEVE
 
 ✔ Mantén la calma
-✔ No compartas datos personales
+✔ No compartas información personal
 ✔ Observa si se repite
 ✔ Busca apoyo si aumenta
     `;
   }
 
-  // ==========================
-  // 💾 GUARDAR EN SUPABASE (TESTIMONIOS)
-  // ==========================
+  // =========================
+  // 💾 GUARDAR EN SUPABASE
+  // =========================
   const { error } = await supabase
-    .from("testimonios")   // 👈 AQUÍ ESTÁ EL CAMBIO
+    .from("testimonios")
     .insert([
       {
         mensaje: msg,
@@ -96,14 +116,17 @@ async function enviar() {
     ]);
 
   if (error) {
-    console.log("Error Supabase:", error);
-    document.getElementById("respuesta").innerText =
-      "❌ Error al guardar en la base de datos";
+    console.log(error);
+    out.innerText = "❌ Error al guardar en la base de datos";
     return;
   }
 
-  document.getElementById("respuesta").innerText = respuesta;
-  document.getElementById("mensaje").value = "";
+  out.innerText = respuesta;
+  input.value = "";
 }
 
+// =========================
+// 🌐 HACER FUNCIONES GLOBALES
+// =========================
+window.mostrar = mostrar;
 window.enviar = enviar;
