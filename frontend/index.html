@@ -104,11 +104,50 @@
 </section>
 
 <section id="buzon">
-    <h2>💙 Buzón Anónimo</h2>
-    <p>Hoy eres testigo, mañana puedes ser víctima.</p>
-    <textarea id="testimonio" placeholder="Comparte tu experiencia aquí..."></textarea>
-    <button onclick="enviarTestimonio()">Enviar de forma anónima</button>
-    <div id="mensaje"></div>
+
+<h2>💙 Buzón Inteligente de Apoyo</h2>
+
+<p>
+Comparte tu experiencia de forma completamente anónima.
+Nuestro sistema analizará tu situación y te mostrará
+orientación personalizada para ayudarte.
+</p>
+
+<textarea
+id="testimonio"
+placeholder="Describe con el mayor detalle posible lo que ocurrió...">
+</textarea>
+
+<button onclick="enviarTestimonio()">
+📨 Enviar de forma anónima
+</button>
+
+<div id="mensaje"></div>
+
+<!-- RESPUESTA DEL SISTEMA -->
+
+<div id="respuestaVictima" class="respuesta-victima" style="display:none; margin-top:30px;">
+
+<h2>🛡 Orientación personalizada</h2>
+
+<div id="nivelRiesgo"></div>
+
+<div id="tipoCaso"></div>
+
+<div id="explicacionCaso"></div>
+
+<div id="accionesCaso"></div>
+
+<div id="seguridadDigital"></div>
+
+<div id="redesApoyo"></div>
+
+<div id="reportesRedes"></div>
+
+<div id="mensajeFinal"></div>
+
+</div>
+
 </section>
 
 <section id="informacion">
