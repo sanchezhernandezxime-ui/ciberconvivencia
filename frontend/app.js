@@ -420,3 +420,53 @@ function analizarTestimonio(texto) {
     );
 
 }
+function mostrarResultadoInteligente(riesgo, color, tipo, explicacion, acciones) {
+
+    const mensaje = document.getElementById("mensaje");
+
+    if (!mensaje) return;
+
+    let accionesHTML = "";
+
+    acciones.forEach(a => {
+        accionesHTML += `<li>${a}</li>`;
+    });
+
+    mensaje.innerHTML = `
+        <div style="
+            margin-top:20px;
+            padding:20px;
+            border-radius:12px;
+            background:${color};
+            color:white;
+        ">
+            <h2>${riesgo}</h2>
+            <h3>${tipo}</h3>
+
+            <p style="margin-top:10px;">
+                ${explicacion}
+            </p>
+
+            <h4>📌 Qué hacer ahora:</h4>
+            <ul>
+                ${accionesHTML}
+            </ul>
+
+            <hr style="margin:15px 0;">
+
+            <h4>📞 Líneas de ayuda en México:</h4>
+            <ul>
+                <li><strong>911</strong> Emergencias</li>
+                <li><strong>088</strong> Policía Cibernética</li>
+                <li><strong>800 911 2000</strong> Línea de la Vida</li>
+            </ul>
+
+            <h4>🏫 Apoyo adicional:</h4>
+            <ul>
+                <li>Habla con un profesor o tutor</li>
+                <li>Acude al DIF o centro de salud más cercano</li>
+                <li>Reporta en la plataforma donde ocurrió el acoso</li>
+            </ul>
+        </div>
+    `;
+}
