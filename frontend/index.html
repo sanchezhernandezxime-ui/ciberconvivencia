@@ -10,37 +10,75 @@
 
 <header>
   <h1>🛡️ Ciberinformación</h1>
-  <p>Plataforma de apoyo, prevención y orientación ante el ciberacoso</p>
+  <p>Plataforma de apoyo ante el ciberacoso</p>
 </header>
 
-<section class="card">
-  <h2>⚠️ Violentómetro Digital</h2>
-
-  <label><input type="checkbox" value="1"> Insultos o burlas</label>
-  <label><input type="checkbox" value="1"> Rumores</label>
-  <label><input type="checkbox" value="2"> Amenazas</label>
-  <label><input type="checkbox" value="2"> Acoso constante</label>
-  <label><input type="checkbox" value="3"> Difusión de información privada</label>
-  <label><input type="checkbox" value="3"> Suplantación de identidad</label>
-
-  <button onclick="evaluar()">Evaluar situación</button>
-
-  <p id="nivel"></p>
+<section class="menu">
+  <button onclick="mostrar('violentometro')">⚠️ Violentómetro</button>
+  <button onclick="mostrar('buzon')">📩 Buzón Anónimo</button>
+  <button onclick="mostrar('info')">📚 Información</button>
+  <button onclick="mostrar('ayuda')">📞 Ayuda</button>
 </section>
 
-<section class="card">
-  <h2>📊 Información y apoyo personalizado</h2>
-  <div id="info">Selecciona una evaluación para ver ayuda.</div>
+<!-- VIOLENTÓMETRO -->
+<section id="violentometro" class="card oculto">
+  <h2>⚠️ Violentómetro Completo</h2>
+
+  <p><b>🟢 Nivel bajo</b></p>
+  <ul>
+    <li>Insultos</li>
+    <li>Burlas</li>
+    <li>Exclusión digital</li>
+  </ul>
+
+  <p><b>🟡 Nivel medio</b></p>
+  <ul>
+    <li>Rumores</li>
+    <li>Acoso constante</li>
+    <li>Mensajes ofensivos</li>
+  </ul>
+
+  <p><b>🔴 Nivel grave</b></p>
+  <ul>
+    <li>Amenazas</li>
+    <li>Extorsión</li>
+    <li>Difusión de contenido privado</li>
+    <li>Suplantación de identidad</li>
+  </ul>
 </section>
 
-<section class="card">
+<!-- BUZÓN -->
+<section id="buzon" class="card oculto">
   <h2>📩 Buzón 100% Anónimo</h2>
 
-  <textarea id="mensaje" placeholder="Describe lo que estás viviendo..."></textarea>
+  <textarea id="mensaje" placeholder="Describe tu situación..."></textarea>
 
-  <button onclick="enviar()">Enviar de forma anónima</button>
+  <button onclick="enviar()">Enviar ayuda</button>
 
-  <p id="estado"></p>
+  <p id="respuesta"></p>
+</section>
+
+<!-- INFO -->
+<section id="info" class="card oculto">
+  <h2>📚 Información</h2>
+  <p>
+    El ciberacoso es violencia digital que puede afectar emocionalmente a las personas.
+  </p>
+
+  <ul>
+    <li>No respondas al agresor</li>
+    <li>Guarda evidencia</li>
+    <li>Bloquea cuentas</li>
+    <li>Pide ayuda</li>
+  </ul>
+</section>
+
+<!-- AYUDA -->
+<section id="ayuda" class="card oculto">
+  <h2>📞 Líneas de ayuda</h2>
+
+  <p><b>Querétaro:</b> 911 / Apoyo psicológico estatal</p>
+  <p><b>San Juan del Río:</b> DIF Municipal / Atención juvenil</p>
 </section>
 
 <script src="app.js"></script>
