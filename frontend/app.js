@@ -1,132 +1,100 @@
- import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+console.log("APP JS CARGADO");
 
-// 🔐 SUPABASE (REEMPLAZA ESTO)
-const supabaseUrl = "https://TU_PROYECTO.supabase.co";
-const supabaseKey = "TU_ANON_KEY";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = 'https://nnewexplofyzbcahdaab.supabase.co';
 
-// =========================
-// 🧭 NAVEGACIÓN SEGURA
-// =========================
-function mostrar(id) {
-  document.querySelectorAll("section").forEach(sec => {
-    sec.style.display = "none";
-  });
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw';
 
-  const target = document.getElementById(id);
-  if (target) {
-    target.style.display = "block";
-  }
-}
+const clienteSupabase = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
 
-// =========================
-// 🟢 INICIO DE PÁGINA
-// =========================
-window.onload = () => {
-  document.querySelectorAll("section").forEach(sec => {
-    sec.style.display = "none";
-  });
+async function enviarTestimonio() {
 
-  const v = document.getElementById("violentometro");
-  if (v) v.style.display = "block";
-};
+  const textarea = document.getElementById('testimonio');
+  const mensaje = document.getElementById('mensaje');
 
-// =========================
-// 🤖 BUZÓN IA + SUPABASE
-// =========================
-async function enviar() {
-  const input = document.getElementById("mensaje");
-  const out = document.getElementById("respuesta");
+  const testimonio = textarea.value;
 
-  if (!input || !input.value.trim()) {
-    out.innerText = "Escribe un mensaje primero";
+  if (!testimonio.trim()) {
+    mensaje.innerText = 'Por favor escribe un testimonio.';
     return;
   }
 
-  let msg = input.value.toLowerCase();
-
-  let nivel = "";
-  let respuesta = "";
-
-  // 🔴 GRAVE
-  if (
-    msg.includes("amenaza") ||
-    msg.includes("extorsión") ||
-    msg.includes("matar") ||
-    msg.includes("foto privada") ||
-    msg.includes("video")
-  ) {
-    nivel = "Grave";
-    respuesta = `
-🚨 CASO GRAVE DETECTADO
-
-✔ Guarda evidencia
-✔ No respondas
-✔ Bloquea al agresor
-✔ Reporta en la red social
-✔ Llama al 911 si hay riesgo
-
-💡 Esto puede ser un delito digital.
-    `;
-  }
-
-  // 🟡 MEDIO
-  else if (
-    msg.includes("insulto") ||
-    msg.includes("burla") ||
-    msg.includes("rumor") ||
-    msg.includes("acoso")
-  ) {
-    nivel = "Medio";
-    respuesta = `
-⚠️ CASO DE ACOSO DIGITAL
-
-✔ No respondas
-✔ Bloquea cuentas
-✔ Guarda evidencia
-✔ Habla con un adulto
-✔ Reporta la cuenta
-    `;
-  }
-
-  // 🟢 LEVE
-  else {
-    nivel = "Bajo";
-    respuesta = `
-🟢 CASO LEVE
-
-✔ Mantén la calma
-✔ No compartas información personal
-✔ Observa si se repite
-✔ Busca apoyo si aumenta
-    `;
-  }
-
-  // =========================
-  // 💾 GUARDAR EN SUPABASE
-  // =========================
-  const { error } = await supabase
-    .from("testimonios")
+  const { error } = await clienteSupabase
+    .from('testimonios')
     .insert([
       {
-        mensaje: msg,
-        nivel: nivel,
-        respuesta: respuesta
+        testimonio: testimonio,
+        fecha: new Date().toISOString()
       }
     ]);
 
   if (error) {
-    console.log(error);
-    out.innerText = "❌ Error al guardar en la base de datos";
+    console.error(error);
+    mensaje.innerText = 'Error al enviar el testimonio.';
     return;
   }
 
-  out.innerText = respuesta;
-  input.value = "";
+  const frases = [
+    'Gracias por compartir tu experiencia. Tu voz importa.',
+    'No estás solo. Buscar ayuda es un acto de valentía.',
+    'Hablar sobre lo que ocurre puede ser el primer paso para solucionarlo.',
+    'Tu bienestar es importante y mereces apoyo.',
+    'Gracias por confiar en este espacio seguro.'
+  ];
+
+  const aleatoria =
+    frases[Math.floor(Math.random() * frases.length)];
+
+  mensaje.innerText = aleatoria;
+
+  textarea.value = '';
 }
 
-// =========================
-// 🌐 HACER FUNCIONES GLOBALES
-// =========================
-window.mostrar = mostrar;
-window.enviar = enviar;
+window.enviarTestimonio = enviarTestimonio;
+// --- CÓDIGO PARA EL VIOLENTÓMETRO INTERACTIVO ---
+
+function mostrarAyuda(nivel) {
+  const resultado = document.getElementById('resultadoViolento');
+  if (!resultado) return;
+
+  // Limpiamos lo que haya tenido antes y aseguramos que se vea
+  resultado.innerHTML = "";
+  resultado.style.display = "block";
+
+  if (nivel === 'amarillo') {
+    resultado.innerHTML = `
+      <h3>🟡 Herramientas para Nivel Amarillo</h3>
+      <p>Aunque parezcan "bromas", estas conductas dañan la convivencia. Te recomendamos:</p>
+      <ul>
+        <li><strong>Establece límites:</strong> Expresa claramente que no te gustan esos comentarios o apodos.</li>
+        <li><strong>No ignores la señal:</strong> Habla con un amigo, familiar o un docente de confianza sobre cómo te sientes.</li>
+        <li><strong>Reporta en redes:</strong> Si las burlas son en plataformas digitales, usa las herramientas de reporte de la aplicación para bloquear la publicación.</li>
+      </ul>
+    `;
+  } else if (nivel === 'naranja') {
+    resultado.innerHTML = `
+      <h3>🟠 Herramientas para Nivel Naranja</h3>
+      <p>El ciberacoso constante requiere acciones firmes para proteger tu tranquilidad:</p>
+      <ul>
+        <li><strong>Guarda evidencias:</strong> Toma capturas de pantalla de los mensajes, perfiles falsos o publicaciones. No borres nada.</li>
+        <li><strong>Bloqueo inmediato:</strong> Corta toda comunicación bloqueando las cuentas del agresor en todas tus redes.</li>
+        <li><strong>Busca ayuda institucional:</strong> Reporta la situación con las autoridades de la escuela o tus padres para que intervengan.</li>
+      </ul>
+    `;
+  } else if (nivel === 'rojo') {
+    resultado.innerHTML = `
+      <h3>🔴 Herramientas para Nivel Rojo</h3>
+      <p>¡Atención! Estás ante una situación de riesgo alto que puede constituir un delito digital. Haz lo siguiente:</p>
+      <ul>
+        <li><strong>No cedas a la extorsión:</strong> Si te amenazan con publicar fotos o información, no accedas a sus peticiones ni envíes más material.</li>
+        <li><strong>Resguarda pruebas:</strong> Anota enlaces a los perfiles de los agresores y exporta los chats completos.</li>
+        <li><strong>Denuncia formalmente:</strong> Solicita apoyo de la Policía Cibernética (088 o al 911) o acude con un adulto a la Fiscalía para reportar el caso bajo leyes como la Ley Olimpia.</li>
+      </ul>
+    `;
+  }
+}
+
+// Hacemos que la función esté disponible para los botones del HTML
+window.mostrarAyuda = mostrarAyuda;

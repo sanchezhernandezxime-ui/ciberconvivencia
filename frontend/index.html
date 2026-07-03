@@ -1,121 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ciberinformación</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Ciberconvivencia - Centro de Ayuda</title>
 </head>
-
 <body>
+    <nav>
+        <ul>
+            <li><a href="#info">Información</a></li>
+            <li><a href="#violentometro">Violentómetro</a></li>
+            <li><a href="#buzon">Buzón Anónimo</a></li>
+            <li><a href="#redes">Redes de Apoyo</a></li>
+        </ul>
+    </nav>
 
-<header>
-  <h1>🛡️ Ciberinformación</h1>
-  <p>Plataforma integral de apoyo ante el ciberacoso</p>
-</header>
+    <main id="info">
+        <h1>Entendiendo el Ciberacoso</h1>
+        <p>El ciberacoso es el uso de medios digitales para hostigar a alguien[cite: 1]. Identificar el nivel de violencia es el primer paso para detenerlo[cite: 1].</p>
 
-<div class="menu">
-  <button onclick="mostrar('violentometro')">⚠️ Violentómetro</button>
-  <button onclick="mostrar('buzon')">🤖 Buzón de Apoyo</button>
-  <button onclick="mostrar('info')">📊 Información</button>
-  <button onclick="mostrar('ayuda')">📞 Ayuda</button>
-</div>
+        <section id="violentometro">
+            <h2>Violentómetro Digital</h2>
+            <div class="nivel amarillo">
+                <h3>Nivel 1: Riesgo Bajo</h3>
+                <p>Bromas hirientes, ignorar, manipular o controlar[cite: 1]. <b>Acción:</b> Bloquea y no respondas[cite: 1].</p>
+            </div>
+            <div class="nivel naranja">
+                <h3>Nivel 2: Riesgo Medio</h3>
+                <p>Difusión de fotos/videos sin permiso, chantaje[cite: 1]. <b>Acción:</b> Guarda capturas y reporta[cite: 1].</p>
+            </div>
+            <div class="nivel rojo">
+                <h3>Nivel 3: Riesgo Crítico</h3>
+                <p>Amenazas físicas, acoso constante[cite: 1]. <b>Acción:</b> Denuncia formalmente ante la Fiscalía[cite: 1].</p>
+            </div>
+        </section>
 
-<!-- VIOLENTÓMETRO -->
-<section id="violentometro" class="card">
-  <h2>⚠️ Violentómetro Digital Completo</h2>
+        <section id="buzon">
+            <h2>Buzón Anónimo</h2>
+            <textarea id="testimonio" placeholder="Escribe tu testimonio aquí..."></textarea>
+            <button onclick="enviarTestimonio()">Obtener ayuda personalizada</button>
+            <div id="resultado"></div>
+        </section>
 
-  <h3>🟢 Nivel bajo</h3>
-  <ul>
-    <li>Insultos y burlas</li>
-    <li>Comentarios ofensivos</li>
-    <li>Exclusión digital</li>
-  </ul>
-  <p>🧰 Herramientas: bloquear, reportar, privacidad, apoyo familiar.</p>
-
-  <h3>🟡 Nivel medio</h3>
-  <ul>
-    <li>Rumores o difamación</li>
-    <li>Acoso constante</li>
-    <li>Mensajes intimidantes</li>
-  </ul>
-  <p>🧰 Herramientas: denunciar plataforma, evidencia, tutor, ajustes de seguridad.</p>
-
-  <h3>🔴 Nivel grave</h3>
-  <ul>
-    <li>Amenazas</li>
-    <li>Extorsión</li>
-    <li>Suplantación de identidad</li>
-    <li>Difusión de contenido privado</li>
-  </ul>
-  <p>🧰 Emergencia: 911, policía cibernética, apoyo psicológico inmediato.</p>
-</section>
-
-<!-- BUZÓN IA -->
-<section id="buzon" class="card hidden">
-  <h2>🤖 Buzón Inteligente de Apoyo</h2>
-
-  <textarea id="mensaje" placeholder="Describe lo que estás viviendo..."></textarea>
-
-  <button onclick="enviar()">Enviar análisis</button>
-
-  <p id="respuesta"></p>
-</section>
-
-<!-- INFO -->
-<section id="info" class="card hidden">
-  <h2>📊 Información sobre el ciberacoso</h2>
-
-  <p>
-    El ciberacoso es una forma de violencia digital que ocurre en redes sociales,
-    mensajes, juegos en línea o cualquier plataforma digital.
-  </p>
-
-  <h3>📌 Tipos de ciberacoso</h3>
-  <ul>
-    <li>Insultos y humillaciones</li>
-    <li>Difusión de rumores</li>
-    <li>Acoso constante</li>
-    <li>Suplantación de identidad</li>
-    <li>Difusión de contenido privado sin permiso</li>
-  </ul>
-
-  <h3>📌 Consecuencias</h3>
-  <ul>
-    <li>Ansiedad y depresión</li>
-    <li>Baja autoestima</li>
-    <li>Aislamiento social</li>
-    <li>Problemas escolares</li>
-    <li>Riesgo emocional grave</li>
-  </ul>
-
-  <h3>📌 ¿Qué hacer?</h3>
-  <ul>
-    <li>No responder al agresor</li>
-    <li>Guardar evidencia</li>
-    <li>Bloquear cuentas</li>
-    <li>Pedir ayuda a adultos</li>
-    <li>Reportar en plataformas</li>
-  </ul>
-</section>
-
-<!-- AYUDA -->
-<section id="ayuda" class="card hidden">
-  <h2>📞 Líneas de ayuda</h2>
-
-  <p><b>Querétaro:</b></p>
-  <ul>
-    <li>911 Emergencias</li>
-    <li>Atención psicológica estatal</li>
-    <li>Policía cibernética</li>
-  </ul>
-
-  <p><b>San Juan del Río:</b></p>
-  <ul>
-    <li>DIF Municipal</li>
-    <li>Apoyo juvenil psicológico</li>
-  </ul>
-</section>
-
-<script src="app.js"></script>
+        <section id="redes">
+            <h2>Redes de Apoyo en Querétaro</h2>
+            <ul>
+                <li>Policía Cibernética QRO: 442-211-7000[cite: 1]</li>
+                <li>Fiscalía General del Estado: Atención presencial[cite: 1]</li>
+                <li>CAPA (Querétaro): Apoyo psicológico[cite: 1]</li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
