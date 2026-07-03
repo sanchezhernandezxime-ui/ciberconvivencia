@@ -10,75 +10,110 @@
 
 <header>
   <h1>🛡️ Ciberinformación</h1>
-  <p>Plataforma de apoyo ante el ciberacoso</p>
+  <p>Plataforma integral de apoyo ante el ciberacoso</p>
 </header>
 
-<section class="menu">
+<div class="menu">
   <button onclick="mostrar('violentometro')">⚠️ Violentómetro</button>
-  <button onclick="mostrar('buzon')">📩 Buzón Anónimo</button>
-  <button onclick="mostrar('info')">📚 Información</button>
+  <button onclick="mostrar('buzon')">🤖 Buzón de Apoyo</button>
+  <button onclick="mostrar('info')">📊 Información</button>
   <button onclick="mostrar('ayuda')">📞 Ayuda</button>
-</section>
+</div>
 
 <!-- VIOLENTÓMETRO -->
-<section id="violentometro" class="card oculto">
-  <h2>⚠️ Violentómetro Completo</h2>
+<section id="violentometro" class="card">
+  <h2>⚠️ Violentómetro Digital Completo</h2>
 
-  <p><b>🟢 Nivel bajo</b></p>
+  <h3>🟢 Nivel bajo</h3>
   <ul>
-    <li>Insultos</li>
-    <li>Burlas</li>
+    <li>Insultos y burlas</li>
+    <li>Comentarios ofensivos</li>
     <li>Exclusión digital</li>
   </ul>
+  <p>🧰 Herramientas: bloquear, reportar, privacidad, apoyo familiar.</p>
 
-  <p><b>🟡 Nivel medio</b></p>
+  <h3>🟡 Nivel medio</h3>
   <ul>
-    <li>Rumores</li>
+    <li>Rumores o difamación</li>
     <li>Acoso constante</li>
-    <li>Mensajes ofensivos</li>
+    <li>Mensajes intimidantes</li>
   </ul>
+  <p>🧰 Herramientas: denunciar plataforma, evidencia, tutor, ajustes de seguridad.</p>
 
-  <p><b>🔴 Nivel grave</b></p>
+  <h3>🔴 Nivel grave</h3>
   <ul>
     <li>Amenazas</li>
     <li>Extorsión</li>
-    <li>Difusión de contenido privado</li>
     <li>Suplantación de identidad</li>
+    <li>Difusión de contenido privado</li>
   </ul>
+  <p>🧰 Emergencia: 911, policía cibernética, apoyo psicológico inmediato.</p>
 </section>
 
-<!-- BUZÓN -->
-<section id="buzon" class="card oculto">
-  <h2>📩 Buzón 100% Anónimo</h2>
+<!-- BUZÓN IA -->
+<section id="buzon" class="card hidden">
+  <h2>🤖 Buzón Inteligente de Apoyo</h2>
 
-  <textarea id="mensaje" placeholder="Describe tu situación..."></textarea>
+  <textarea id="mensaje" placeholder="Describe lo que estás viviendo..."></textarea>
 
-  <button onclick="enviar()">Enviar ayuda</button>
+  <button onclick="enviar()">Enviar análisis</button>
 
   <p id="respuesta"></p>
 </section>
 
 <!-- INFO -->
-<section id="info" class="card oculto">
-  <h2>📚 Información</h2>
+<section id="info" class="card hidden">
+  <h2>📊 Información sobre el ciberacoso</h2>
+
   <p>
-    El ciberacoso es violencia digital que puede afectar emocionalmente a las personas.
+    El ciberacoso es una forma de violencia digital que ocurre en redes sociales,
+    mensajes, juegos en línea o cualquier plataforma digital.
   </p>
 
+  <h3>📌 Tipos de ciberacoso</h3>
   <ul>
-    <li>No respondas al agresor</li>
-    <li>Guarda evidencia</li>
-    <li>Bloquea cuentas</li>
-    <li>Pide ayuda</li>
+    <li>Insultos y humillaciones</li>
+    <li>Difusión de rumores</li>
+    <li>Acoso constante</li>
+    <li>Suplantación de identidad</li>
+    <li>Difusión de contenido privado sin permiso</li>
+  </ul>
+
+  <h3>📌 Consecuencias</h3>
+  <ul>
+    <li>Ansiedad y depresión</li>
+    <li>Baja autoestima</li>
+    <li>Aislamiento social</li>
+    <li>Problemas escolares</li>
+    <li>Riesgo emocional grave</li>
+  </ul>
+
+  <h3>📌 ¿Qué hacer?</h3>
+  <ul>
+    <li>No responder al agresor</li>
+    <li>Guardar evidencia</li>
+    <li>Bloquear cuentas</li>
+    <li>Pedir ayuda a adultos</li>
+    <li>Reportar en plataformas</li>
   </ul>
 </section>
 
 <!-- AYUDA -->
-<section id="ayuda" class="card oculto">
+<section id="ayuda" class="card hidden">
   <h2>📞 Líneas de ayuda</h2>
 
-  <p><b>Querétaro:</b> 911 / Apoyo psicológico estatal</p>
-  <p><b>San Juan del Río:</b> DIF Municipal / Atención juvenil</p>
+  <p><b>Querétaro:</b></p>
+  <ul>
+    <li>911 Emergencias</li>
+    <li>Atención psicológica estatal</li>
+    <li>Policía cibernética</li>
+  </ul>
+
+  <p><b>San Juan del Río:</b></p>
+  <ul>
+    <li>DIF Municipal</li>
+    <li>Apoyo juvenil psicológico</li>
+  </ul>
 </section>
 
 <script src="app.js"></script>
