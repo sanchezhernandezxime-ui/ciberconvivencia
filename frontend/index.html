@@ -1,56 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Ciberconvivencia - Centro de Ayuda</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataforma de Ciberconvivencia y Prevención</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <nav>
-        <ul>
-            <li><a href="#info">Información</a></li>
-            <li><a href="#violentometro">Violentómetro</a></li>
-            <li><a href="#buzon">Buzón Anónimo</a></li>
-            <li><a href="#redes">Redes de Apoyo</a></li>
-        </ul>
-    </nav>
 
-    <main id="info">
-        <h1>Entendiendo el Ciberacoso</h1>
-        <p>El ciberacoso es el uso de medios digitales para hostigar a alguien[cite: 1]. Identificar el nivel de violencia es el primer paso para detenerlo[cite: 1].</p>
+<header>
+<h1>🛡️ Plataforma de Ciberconvivencia y Prevención</h1>
+<p>Promoviendo espacios digitales seguros, responsables y libres de ciberacoso.</p>
+</header>
 
-        <section id="violentometro">
-            <h2>Violentómetro Digital</h2>
-            <div class="nivel amarillo">
-                <h3>Nivel 1: Riesgo Bajo</h3>
-                <p>Bromas hirientes, ignorar, manipular o controlar[cite: 1]. <b>Acción:</b> Bloquea y no respondas[cite: 1].</p>
-            </div>
-            <div class="nivel naranja">
-                <h3>Nivel 2: Riesgo Medio</h3>
-                <p>Difusión de fotos/videos sin permiso, chantaje[cite: 1]. <b>Acción:</b> Guarda capturas y reporta[cite: 1].</p>
-            </div>
-            <div class="nivel rojo">
-                <h3>Nivel 3: Riesgo Crítico</h3>
-                <p>Amenazas físicas, acoso constante[cite: 1]. <b>Acción:</b> Denuncia formalmente ante la Fiscalía[cite: 1].</p>
-            </div>
-        </section>
+<nav>
+<a href="#violentometro">Violentómetro</a>
+<a href="#buzon">Buzón</a>
+<a href="#informacion">Información</a>
+<a href="#ayuda">Redes de Ayuda</a>
+</nav>
 
-        <section id="buzon">
-            <h2>Buzón Anónimo</h2>
-            <textarea id="testimonio" placeholder="Escribe tu testimonio aquí..."></textarea>
-            <button onclick="enviarTestimonio()">Obtener ayuda personalizada</button>
-            <div id="resultado"></div>
-        </section>
+<section id="violentometro">
 
-        <section id="redes">
-            <h2>Redes de Apoyo en Querétaro</h2>
-            <ul>
-                <li>Policía Cibernética QRO: 442-211-7000[cite: 1]</li>
-                <li>Fiscalía General del Estado: Atención presencial[cite: 1]</li>
-                <li>CAPA (Querétaro): Apoyo psicológico[cite: 1]</li>
-            </ul>
-        </section>
-    </main>
-    <script src="script.js"></script>
+<h2>📊 Violentómetro Digital Interactivo</h2>
+
+<p>
+Selecciona la situación que más se parece a lo que estás viviendo para conocer
+su nivel de riesgo y las herramientas que pueden ayudarte.
+</p>
+
+<div class="nivel amarillo">
+
+<h3>🟡 Nivel Amarillo - Alerta Temprana</h3>
+
+<ul>
+<li>Apodos ofensivos.</li>
+<li>Burlas constantes.</li>
+<li>Comentarios hirientes.</li>
+<li>Memes para ridiculizar.</li>
+<li>Exclusión ocasional de grupos.</li>
+</ul>
+
+<button onclick="mostrarAyuda('amarillo')">
+Ver herramientas de ayuda
+</button>
+
+</div>
+
+<div class="nivel naranja">
+
+<h3>🟠 Nivel Naranja - Ciberacoso Constante</h3>
+
+<ul>
+<li>Difusión de rumores.</li>
+<li>Mensajes ofensivos repetitivos.</li>
+<li>Creación de perfiles falsos.</li>
+<li>Publicación de capturas privadas.</li>
+<li>Suplantación de identidad.</li>
+</ul>
+
+<button onclick="mostrarAyuda('naranja')">
+Ver herramientas de ayuda
+</button>
+
+</div>
+
+<div class="nivel rojo">
+
+<h3>🔴 Nivel Rojo - Riesgo Alto</h3>
+
+<ul>
+<li>Amenazas directas.</li>
+<li>Sextorsión.</li>
+<li>Doxing.</li>
+<li>Difusión de contenido íntimo.</li>
+<li>Extorsión digital.</li>
+</ul>
+
+<button onclick="mostrarAyuda('rojo')">
+Ver herramientas de ayuda
+</button>
+
+</div>
+
+<div id="resultadoViolento" class="card"></div>
+
+</section>
+
+<section id="buzon">
+
+<h2>💙 Buzón Anónimo de Experiencias</h2>
+
+<p>
+Este espacio está diseñado para que puedas compartir experiencias relacionadas
+con el ciberacoso de forma completamente anónima.
+</p>
+
+<textarea
+id="testimonio"
+placeholder="Comparte tu experiencia aquí..."
+></textarea>
+
+<button onclick="enviarTestimonio()">
+Enviar de forma anónima
+</button>
+
+<div id="mensaje"></div>
+
+</section>
+
+<section id="informacion">
+
+<h2>📚 Centro de Información sobre Ciberacoso</h2>
+
+<div class="card">
+
+<h3>¿Qué es el ciberacoso?</h3>
+
+<p>
+El ciberacoso es una forma de violencia digital que ocurre mediante redes sociales,
+aplicaciones de mensajería, videojuegos en línea, correos electrónicos y otras
+plataformas digitales.
+</p>
+
+<p>
+Su propósito suele ser intimidar, humillar, amenazar o dañar emocionalmente a una persona.
+A diferencia del acoso tradicional, puede ocurrir las 24 horas del día y alcanzar a un gran número de personas en cuestión de minutos.
+</p>
+
+<h3>¿Por qué es tan dañino?</h3>
+
+<p>
+Las agresiones digitales pueden permanecer en internet durante mucho tiempo,
+haciendo que las víctimas se sientan expuestas incluso dentro de su hogar.
+Además, la difusión rápida de imágenes, mensajes o rumores puede aumentar el impacto emocional.
+</p>
+
+<h3>Consecuencias del ciberacoso</h3>
+
+<ul>
+<li>Ansiedad.</li>
+<li>Estrés.</li>
+<li>Baja autoestima.</li>
+<li>Aislamiento social.</li>
+<li>Problemas de sueño.</li>
+<li>Disminución del rendimiento escolar.</li>
+<li>Problemas emocionales importantes.</li>
+</ul>
+
+<h3>¿Qué hacer si eres víctima?</h3>
+
+<ul>
+<li>No responder a las agresiones.</li>
+<li>Guardar evidencias.</li>
+<li>Bloquear usuarios ofensivos.</li>
+<li>Reportar contenido.</li>
+<li>Buscar apoyo de familiares, docentes o profesionales.</li>
+<li>Denunciar situaciones graves.</li>
+</ul>
+
+</div>
+
+</section>
+
+<section id="ayuda">
+
+<h2>📞 Redes de Ayuda y Denuncia</h2>
+
+<div class="card">
+
+<h3>¿Por qué es importante denunciar?</h3>
+
+<p>
+Denunciar ayuda a detener la violencia digital, proteger a otras personas y permitir que las autoridades puedan actuar cuando exista un delito.
+</p>
+
+<h3>Pasos para denunciar</h3>
+
+<ol>
+<li>Guardar capturas de pantalla.</li>
+<li>Guardar enlaces y conversaciones.</li>
+<li>No eliminar evidencias.</li>
+<li>Bloquear al agresor.</li>
+<li>Informar a un adulto o autoridad escolar.</li>
+<li>Presentar una denuncia formal si es necesario.</li>
+</ol>
+
+<h3>Canales de ayuda en México</h3>
+
+<div class="ayuda-grid">
+
+<a class="ayuda-card"
+href="https://www.gob.mx/gncertmx"
+target="_blank">
+Policía Cibernética
+</a>
+
+<a class="ayuda-card"
+href="https://www.unicef.org/mexico"
+target="_blank">
+UNICEF México
+</a>
+
+<a class="ayuda-card"
+href="https://www.gob.mx"
+target="_blank">
+Gobierno de México
+</a>
+
+</div>
+
+<h3>Emergencias</h3>
+
+<p><strong>911</strong> - Emergencias.</p>
+
+<p><strong>088</strong> - Orientación relacionada con incidentes cibernéticos.</p>
+
+</div>
+
+</section>
+
+<footer>
+<p>
+Plataforma educativa para la prevención del ciberacoso y la promoción de la convivencia digital responsable.
+</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
