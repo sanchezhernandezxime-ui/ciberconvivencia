@@ -228,3 +228,195 @@ window.mostrarAyudaNivel = function (nivel) {
         `;
     }
 };
+
+// =========================
+// ANALIZADOR INTELIGENTE
+// =========================
+
+function analizarTestimonio(texto) {
+
+    texto = texto.toLowerCase();
+
+    let riesgo = "🟢 Riesgo Bajo";
+    let color = "#22c55e";
+
+    let tipo = "Situación de ciberacoso";
+
+    let explicacion = `
+    Tu testimonio fue analizado automáticamente.
+    La situación que describes merece atención.
+    No debes normalizar ninguna forma de violencia digital.
+    `;
+
+    let acciones = [];
+
+    //-------------------------------------------------
+    // AMENAZAS
+    //-------------------------------------------------
+
+    if (
+        texto.includes("amenaza") ||
+        texto.includes("matar") ||
+        texto.includes("golpear") ||
+        texto.includes("muerte")
+    ){
+
+        riesgo = "🔴 Riesgo Alto";
+        color = "#dc2626";
+
+        tipo = "Amenazas";
+
+        explicacion = `
+        Detectamos posibles amenazas.
+        Tu seguridad es la prioridad.
+        Es importante buscar ayuda inmediatamente.
+        `;
+
+        acciones = [
+
+            "📸 Guarda capturas de pantalla.",
+
+            "🚫 No respondas al agresor.",
+
+            "🔒 Bloquea la cuenta.",
+
+            "👨‍👩‍👧 Habla con un adulto de confianza.",
+
+            "🚔 Si existe peligro inmediato llama al 911."
+
+        ];
+    }
+
+    //-------------------------------------------------
+    // SEXTORSIÓN
+    //-------------------------------------------------
+
+    if (
+
+        texto.includes("foto íntima") ||
+
+        texto.includes("desnuda") ||
+
+        texto.includes("sextorsion") ||
+
+        texto.includes("sextorsión")
+
+    ){
+
+        riesgo = "🔴 Riesgo Alto";
+
+        color = "#dc2626";
+
+        tipo = "Sextorsión";
+
+        explicacion = `
+        Detectamos un posible caso de sextorsión.
+        Nunca envíes dinero ni más imágenes.
+        Buscar ayuda inmediata puede evitar que la situación empeore.
+        `;
+
+        acciones = [
+
+            "🚫 No envíes más fotografías.",
+
+            "🚫 No pagues dinero.",
+
+            "📸 Guarda todas las conversaciones.",
+
+            "🚔 Acude a la Policía Cibernética.",
+
+            "👨‍👩‍👧 Busca apoyo de un adulto."
+        ];
+    }
+
+    //-------------------------------------------------
+    // PERFIL FALSO
+    //-------------------------------------------------
+
+    if (
+
+        texto.includes("perfil falso") ||
+
+        texto.includes("cuenta falsa") ||
+
+        texto.includes("suplant")
+
+    ){
+
+        riesgo = "🟠 Riesgo Medio";
+
+        color = "#f97316";
+
+        tipo = "Suplantación de identidad";
+
+        explicacion = `
+        Detectamos una posible suplantación de identidad.
+        Esto puede afectar tu reputación y seguridad.
+        `;
+
+        acciones = [
+
+            "📸 Guarda evidencia.",
+
+            "📢 Reporta el perfil.",
+
+            "🔑 Cambia tu contraseña.",
+
+            "🛡 Activa la verificación en dos pasos.",
+
+            "👨‍👩‍👧 Informa a familiares y escuela."
+
+        ];
+    }
+
+    //-------------------------------------------------
+    // INSULTOS
+    //-------------------------------------------------
+
+    if (
+
+        texto.includes("insulta") ||
+
+        texto.includes("burla") ||
+
+        texto.includes("humilla")
+
+    ){
+
+        riesgo = "🟡 Riesgo Medio";
+
+        color = "#eab308";
+
+        tipo = "Hostigamiento";
+
+        explicacion = `
+        Detectamos conductas de hostigamiento.
+        Aunque parezcan pequeñas, pueden afectar tu bienestar emocional.
+        `;
+
+        acciones = [
+
+            "🚫 No respondas provocaciones.",
+
+            "🚫 Bloquea al agresor.",
+
+            "📸 Guarda evidencia.",
+
+            "👨‍🏫 Habla con un orientador.",
+
+            "💙 Busca apoyo emocional."
+
+        ];
+    }
+
+    //-------------------------------------------------
+
+    mostrarResultadoInteligente(
+        riesgo,
+        color,
+        tipo,
+        explicacion,
+        acciones
+    );
+
+}
