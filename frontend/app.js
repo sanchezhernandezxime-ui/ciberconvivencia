@@ -3,7 +3,7 @@ console.log("APP CARGADO");
 // ================= SUPABASE =================
 const clienteSupabase = supabase.createClient(
   "https://nnewexplofyzbcahdaab.supabase.co",
-  "TU-KEY"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw"
 );
 
 // ================= VIOLENTÓMETRO =================
