@@ -1,69 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Equipo 07 | Ciberconvivencia</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Ciberinformación</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header>
-<h1>🛡️ Equipo 07</h1>
-<h2>Plataforma de Prevención del Ciberacoso</h2>
+  <h1>🛡️ Ciberinformación</h1>
+  <p>Plataforma de apoyo, prevención y orientación ante el ciberacoso</p>
 </header>
 
-<!-- ================= VIOLENTÓMETRO ================= -->
-<section id="violentometro">
+<section class="card">
+  <h2>⚠️ Violentómetro Digital</h2>
 
-<h2>🛡️ Violentómetro</h2>
+  <label><input type="checkbox" value="1"> Insultos o burlas</label>
+  <label><input type="checkbox" value="1"> Rumores</label>
+  <label><input type="checkbox" value="2"> Amenazas</label>
+  <label><input type="checkbox" value="2"> Acoso constante</label>
+  <label><input type="checkbox" value="3"> Difusión de información privada</label>
+  <label><input type="checkbox" value="3"> Suplantación de identidad</label>
 
-<div class="checklist">
-<label><input type="checkbox" class="riesgo" value="1"> Insultos</label>
-<label><input type="checkbox" class="riesgo" value="2"> Rumores</label>
-<label><input type="checkbox" class="riesgo" value="3"> Amenazas</label>
-</div>
+  <button onclick="evaluar()">Evaluar situación</button>
 
-<button onclick="evaluarViolentometro()">Evaluar</button>
-
-<div id="resultadoViolentometro"></div>
-
-<h3>Herramientas</h3>
-
-<button onclick="mostrarAyudaNivel('amarillo')">Amarillo</button>
-<button onclick="mostrarAyudaNivel('naranja')">Naranja</button>
-<button onclick="mostrarAyudaNivel('rojo')">Rojo</button>
-
-<div id="resultadoViolento"></div>
-
+  <p id="nivel"></p>
 </section>
 
-<!-- ================= BUZÓN ================= -->
-<section id="buzon">
-
-<h2>Buzón Inteligente</h2>
-
-<textarea id="testimonio"></textarea>
-
-<button onclick="enviarTestimonio()">Enviar</button>
-
-<div id="mensaje"></div>
-
-<div id="respuestaVictima" style="display:none;">
-<h2>Ayuda personalizada</h2>
-
-<div id="nivelRiesgo"></div>
-<div id="tipoCaso"></div>
-<div id="explicacionCaso"></div>
-<div id="accionesCaso"></div>
-
-</div>
-
+<section class="card">
+  <h2>📊 Información y apoyo personalizado</h2>
+  <div id="info">Selecciona una evaluación para ver ayuda.</div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<section class="card">
+  <h2>📩 Buzón 100% Anónimo</h2>
+
+  <textarea id="mensaje" placeholder="Describe lo que estás viviendo..."></textarea>
+
+  <button onclick="enviar()">Enviar de forma anónima</button>
+
+  <p id="estado"></p>
+</section>
+
 <script src="app.js"></script>
-
 </body>
 </html>

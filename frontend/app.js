@@ -1,90 +1,91 @@
-console.log("APP CARGADO");
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// ================= SUPABASE =================
-const clienteSupabase = supabase.createClient(
-  "https://nnewexplofyzbcahdaab.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uZXdleHBsb2Z5emJjYWhkYWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDE1NzAsImV4cCI6MjA5NjAxNzU3MH0.uFdXdg74Wi4_tc1_rpmjTK5OwD797ao5pNakCGsAEUw"
-);
+// 🔐 TU SUPABASE (REEMPLAZA ESTO)
+const supabaseUrl = "https://TU_PROYECTO.supabase.co";
+const supabaseKey = "TU_ANON_KEY";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// ================= VIOLENTÓMETRO =================
-function evaluarViolentometro() {
+// =====================
+// VIOLENTÓMETRO
+// =====================
+function evaluar() {
+  let checks = document.querySelectorAll("input[type=checkbox]:checked");
+  let score = 0;
 
-  const checks = document.querySelectorAll(".riesgo:checked");
-  const resultado = document.getElementById("resultadoViolentometro");
+  checks.forEach(c => score += parseInt(c.value));
 
-  let puntos = 0;
-  checks.forEach(c => puntos += Number(c.value));
+  let nivel = "";
+  let info = "";
 
-  if (puntos === 0) {
-    resultado.innerHTML = "🟢 Bajo riesgo";
-  } else if (puntos <= 4) {
-    resultado.innerHTML = "🟡 Riesgo medio";
-  } else {
-    resultado.innerHTML = "🔴 Riesgo alto";
+  if (score <= 2) {
+    nivel = "🟢 Riesgo bajo";
+    info = `
+      ✔ Mantén comunicación respetuosa  
+      ✔ No normalices insultos  
+      ✔ Si continúa, pide apoyo a un adulto  
+    `;
   }
+
+  else if (score <= 5) {
+    nivel = "🟡 Riesgo medio";
+    info = `
+      ⚠️ Estás en una situación de alerta  
+      ✔ Guarda evidencia (capturas)  
+      ✔ Bloquea cuentas agresoras  
+      ✔ Habla con un adulto o docente  
+      📞 Apoyo: orientación escolar o psicólogo  
+    `;
+  }
+
+  else {
+    nivel = "🔴 Riesgo alto";
+    info = `
+      🚨 SITUACIÓN GRAVE  
+      ✔ No respondas a agresores  
+      ✔ Guarda TODA evidencia  
+      ✔ Reporta a escuela o autoridades  
+      ✔ Busca ayuda inmediata  
+      📞 México: 911 o orientación escolar  
+    `;
+  }
+
+  document.getElementById("nivel").innerText = nivel;
+  document.getElementById("info").innerHTML = info;
 }
 
-window.evaluarViolentometro = evaluarViolentometro;
+// =====================
+// BUZÓN ANÓNIMO + SUPABASE
+// =====================
+async function enviar() {
+  let mensaje = document.getElementById("mensaje").value;
 
-// ================= BOTONES NIVEL =================
-function mostrarAyudaNivel(nivel) {
-
-  const div = document.getElementById("resultadoViolento");
-
-  if (nivel === "amarillo") {
-    div.innerHTML = "<h3>🟡 Amarillo</h3><p>Ignora insultos y bloquea usuarios</p>";
-  }
-
-  if (nivel === "naranja") {
-    div.innerHTML = "<h3>🟠 Naranja</h3><p>Guarda evidencia y reporta</p>";
-  }
-
-  if (nivel === "rojo") {
-    div.innerHTML = "<h3>🔴 Rojo</h3><p>Denuncia al 911 o policía cibernética</p>";
-  }
-}
-
-window.mostrarAyudaNivel = mostrarAyudaNivel;
-
-// ================= BUZÓN =================
-async function enviarTestimonio() {
-
-  const texto = document.getElementById("testimonio").value.trim();
-  const mensaje = document.getElementById("mensaje");
-
-  if (!texto) {
-    mensaje.innerHTML = "Escribe algo";
+  if (mensaje.trim() === "") {
+    document.getElementById("estado").innerText = "Escribe tu mensaje";
     return;
   }
 
-  // GUARDAR EN SUPABASE
-  await clienteSupabase.from("testimonios").insert([
-    {
-      testimonio: texto,
-      fecha: new Date().toISOString()
-    }
-  ]);
+  // detectar nivel automáticamente
+  let nivel = document.getElementById("nivel").innerText || "Sin evaluar";
 
-  // ANALIZAR
-  let riesgo = "🟢 Seguro";
-  let ayuda = "Todo parece normal";
+  const { error } = await supabase
+    .from("mensajes")
+    .insert([
+      {
+        mensaje: mensaje,
+        nivel: nivel
+      }
+    ]);
 
-  if (texto.includes("amenaza") || texto.includes("matar")) {
-    riesgo = "🔴 Alto riesgo";
-    ayuda = "Llama al 911 y guarda evidencia";
+  if (error) {
+    document.getElementById("estado").innerText = "Error al enviar";
+    console.log(error);
+  } else {
+    document.getElementById("estado").innerText =
+      "✅ Mensaje enviado de forma anónima. Recibirás orientación.";
+    document.getElementById("mensaje").value = "";
   }
-
-  else if (texto.includes("insulto")) {
-    riesgo = "🟡 Medio";
-    ayuda = "Bloquea y reporta";
-  }
-
-  document.getElementById("respuestaVictima").style.display = "block";
-
-  document.getElementById("nivelRiesgo").innerHTML = riesgo;
-  document.getElementById("explicacionCaso").innerHTML = ayuda;
-
-  mensaje.innerHTML = "Enviado correctamente";
 }
 
-window.enviarTestimonio = enviarTestimonio;
+// 👇 necesario para HTML
+window.evaluar = evaluar;
+window.enviar = enviar; 
